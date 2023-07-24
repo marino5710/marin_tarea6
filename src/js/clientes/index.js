@@ -184,7 +184,12 @@ const eliminar = async (id) => {
                     break;
             }
 
-            alert(mensaje);
+            Swal.fire({
+                icon: codigo === 1 ? 'success' : 'error',
+                title: codigo === 1 ? 'Éxito' : 'Error',
+                text: mensaje,
+            });
+
 
         } catch (error) {
             console.log(error);

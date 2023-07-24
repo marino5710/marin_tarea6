@@ -51,7 +51,11 @@ const guardar = async (evento) => {
                 break;
         }
 
-        alert(mensaje);
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: mensaje,
+        });
 
     } catch (error) {
         console.log(error);

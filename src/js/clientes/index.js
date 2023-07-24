@@ -234,22 +234,29 @@ const modificar = async () => {
         switch (codigo) {
             case 1:
                 formulario.reset();
-                buscar();
+                buscar();    
+                Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: mensaje,
+            });
                 break;
 
             case 0:
-                console.log(detalle);
+                console.log(mensaje);
+                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: mensaje, 
+                });
                 break;
 
             default:
                 break;
         }
 
-        Swal.fire({
-            icon: 'success',
-            title: 'Éxito',
-            text: mensaje,
-        });
+    
         cancelarAccion();
 
     } catch (error) {

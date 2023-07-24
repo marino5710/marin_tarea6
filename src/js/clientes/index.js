@@ -153,15 +153,90 @@ const cancelarAccion = () => {
 }
 
 
-const eliminar = (id) => {
-    if(confirm("¿Desea eliminar este cliente?")){
-        alert("eliminando")
+const eliminar = async (id) => {
+    if (confirm("¿Desea eliminar este cliente?")) {
+        const body = new FormData();
+        body.append('tipo', 3); 
+        body.append('cliente_id', id)
+
+        const url = '/marin_tarea6/controladores/cllientes/index.php';
+        const config = {
+            method: 'POST',
+            body
+        }
+
+        try {
+            const respuesta = await fetch(url, config);
+            const data = await respuesta.json();
+
+            const { codigo, mensaje, detalle } = data;
+
+            switch (codigo) {
+                case 1:
+                    buscar();
+                    break;
+
+                case 0:
+                    console.log(detalle);
+                    break;
+
+                default:
+                    break;
+            }
+
+            alert(mensaje);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
 
 buscar();
+const modificar = async () => {
+    const body = new FormData(formulario);
+    body.append('tipo', 2); // Tipo 2 para modificar
+
+    const url = '/marin_tarea6/controladores/cllientes/index.php';
+    const config = {
+        method: 'POST',
+        body
+    }
+
+    try {
+        const respuesta = await fetch(url, config);
+        const data = await respuesta.json();
+
+        const { codigo, mensaje, detalle } = data;
+
+        switch (codigo) {
+            case 1:
+                formulario.reset();
+                buscar();
+                break;
+
+            case 0:
+                console.log(detalle);
+                break;
+
+            default:
+                break;
+        }
+
+        alert(mensaje);
+        cancelarAccion();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
 btnCancelar.addEventListener('click', cancelarAccion)
+
+
+
+
+

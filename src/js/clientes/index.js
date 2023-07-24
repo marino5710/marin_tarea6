@@ -19,6 +19,7 @@ const guardar = async (evento) => {
             title: 'Error',
             text: 'Debe llenar todos los campos',
         });
+        return;
     }
 
     const body = new FormData(formulario)

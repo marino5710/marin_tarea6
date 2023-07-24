@@ -154,10 +154,19 @@ const cancelarAccion = () => {
 
 
 const eliminar = async (id) => {
-    if (confirm("¿Desea eliminar este cliente?")) {
+    const resultado = await Swal.fire({
+        icon: 'warning',
+        title: 'Confirmación',
+        text: '¿Desea eliminar este cliente?',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+    });
+
+    if (resultado.isConfirmed) {
         const body = new FormData();
-        body.append('tipo', 3); 
-        body.append('cliente_id', id)
+        body.append('tipo', 3);
+        body.append('cliente_id', id);
 
         const url = '/marin_tarea6/controladores/cllientes/index.php';
         const config = {

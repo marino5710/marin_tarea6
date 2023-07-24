@@ -245,7 +245,11 @@ const modificar = async () => {
                 break;
         }
 
-        alert(mensaje);
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: mensaje,
+        });
         cancelarAccion();
 
     } catch (error) {

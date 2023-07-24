@@ -235,6 +235,7 @@ const modificar = async () => {
 formulario.addEventListener('submit', guardar )
 btnBuscar.addEventListener('click', buscar)
 btnCancelar.addEventListener('click', cancelarAccion)
+btnModificar.addEventListener('click', modificar);
 
 
 

@@ -60,6 +60,7 @@ const guardar = async (evento) => {
 
     } catch (error) {
         console.log(error);
+
     }
 }
 const buscar = async () => {
